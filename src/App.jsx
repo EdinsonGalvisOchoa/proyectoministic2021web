@@ -3,14 +3,13 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Ventas from "../src/Pages/Ventas";
 import Productos from "../src/Pages/Productos";
 import Home from './Pages/Home';
 import SobreNosotros from './Pages/SobreNosotros';
 import Contactenos from './Pages/Contactenos';
 import Usuarios from "./Pages/Usuarios";
 import Header from './Components/Header';
-
+import Ventas from './Pages/Ventas';
 
 
 
@@ -34,7 +33,8 @@ function App() {
           <Contactenos />
         </Route>
         <Route path='/Usuarios'>
-          <Usuarios />
+          <Header />
+          <Usuarios/>
         </Route>
         <Route path='/'>
           <Home />

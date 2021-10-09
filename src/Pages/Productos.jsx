@@ -1,6 +1,4 @@
 import React from "react";
-
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   Table,
@@ -14,12 +12,12 @@ import {
 } from "reactstrap";
 // lista de objetos iniciales
 const data = [
-  { id: 1, descripcion: "Parapente", valorunitario: 1000 ,estado: "Disponible"},
-  { id: 2, descripcion: "MotoCross", valorunitario: 3000 ,estado: "Disponible"},
-  { id: 3, descripcion: "Parkour", valorunitario: 2000 ,estado: "Disponible" },
-  { id: 4, descripcion: "Parapente", valorunitario: 5000 ,estado: "No Disponible" },
-  { id: 5, descripcion: "Alpinismo", valorunitario: 4000,estado: "Disponible"},
-  { id: 6, descripcion: "Parapente", valorunitario: 6000,estado: "Disponible" },
+  { id: 1, descripcion: "Parapente", valorunitario: 1000, estado: "Disponible" },
+  { id: 2, descripcion: "MotoCross", valorunitario: 3000, estado: "Disponible" },
+  { id: 3, descripcion: "Parkour", valorunitario: 2000, estado: "Disponible" },
+  { id: 4, descripcion: "Parapente", valorunitario: 5000, estado: "No Disponible" },
+  { id: 5, descripcion: "Alpinismo", valorunitario: 4000, estado: "Disponible" },
+  { id: 6, descripcion: "Parapente", valorunitario: 6000, estado: "Disponible" },
 ];
 
 class Productos extends React.Component {
@@ -34,7 +32,7 @@ class Productos extends React.Component {
       id: "",
       descripcion: "",
       valorunitario: "",
-      estado:"",
+      estado: "",
     },
   };
 
@@ -48,13 +46,13 @@ class Productos extends React.Component {
   cerrarModalActualizar = () => {
     this.setState({ modalActualizar: false });
   };
-// esta funcion cambia el estado a true de la funcion del metodo modalinsertar
+  // esta funcion cambia el estado a true de la funcion del metodo modalinsertar
   mostrarModalInsertar = () => {
     this.setState({
       modalInsertar: true,
     });
   };
-// esta funcion cambia el estado a false de la funcion del metodo modalinsertar
+  // esta funcion cambia el estado a false de la funcion del metodo modalinsertar
   cerrarModalInsertar = () => {
     this.setState({ modalInsertar: false });
   };
@@ -74,7 +72,7 @@ class Productos extends React.Component {
   };
 
   eliminar = (dato) => {
-    var opcion = window.confirm("Estás Seguro que deseas Eliminar el elemento "+dato.id);
+    var opcion = window.confirm("Estás Seguro que deseas Eliminar el elemento " + dato.id);
     if (opcion === true) {
       var contador = 0;
       var arreglo = this.state.data;
@@ -88,21 +86,21 @@ class Productos extends React.Component {
     }
   };
 
-  insertar= ()=>{
+  insertar = () => {
     // Almacenar en una variable lo que se tenga en nuestro estado form para poder agregar el ID de forma automaticamica
-    var valorNuevo= {...this.state.form};
+    var valorNuevo = { ...this.state.form };
     // le sumamos 1 a nuestro id actual
-    valorNuevo.id=this.state.data.length+1;
+    valorNuevo.id = this.state.data.length + 1;
     // Almacenar en una lista todos los elemntos para poder midificarla
-    var lista= this.state.data;
+    var lista = this.state.data;
     // a la lista le agramos el elemnto nuevo a la lista creacda en esta funcion
     lista.push(valorNuevo);
     // Actualizamos nuestro estado diciendo que data es igual a lista, y colocamos la funcion modalinsentar en false para cerrarlo
     this.setState({ modalInsertar: false, data: lista });
   }
-// funcion para que el usuario cuando este digitando los datos del formulario automaticamente se actulice en el estado
-// cambio de estado
-handleChange = (e) => {
+  // funcion para que el usuario cuando este digitando los datos del formulario automaticamente se actulice en el estado
+  // cambio de estado
+  handleChange = (e) => {
     this.setState({
       form: {
         ...this.state.form,
@@ -116,12 +114,16 @@ handleChange = (e) => {
     return (
       <>
         <Container>
-        <br />
-          <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Crear</Button>
+          <br />
+          <nav class="navbar navbar-light bg-light justify-content-between">
+            <Button color="success" onClick={() => this.mostrarModalInsertar()}>Crear</Button>
+            <form class="form-inline">
+              <input type="search" placeholder="Search" aria-label="Search" />
+              <button type="submit">Search</button></form></nav>
           <br />
           <br />
           {/*T mayuscula en Table para trabajar con la etiqueta de reactstrap */}
-          <Table>
+          <Table dark hover responsive>
             <thead>
               <tr>
                 <th>ID</th>
@@ -132,7 +134,7 @@ handleChange = (e) => {
               </tr>
             </thead>
             <tbody>
-            {/*funcion map para poder ir elemento por elemento */}
+              {/*funcion map para poder ir elemento por elemento */}
               {this.state.data.map((dato) => (
                 <tr key={dato.id}>
                   <td>{dato.id}</td>
@@ -146,7 +148,7 @@ handleChange = (e) => {
                     >
                       Editar
                     </Button>{" "}
-                    <Button color="danger" onClick={()=> this.eliminar(dato)}>Eliminar</Button>
+                    <Button color="danger" onClick={() => this.eliminar(dato)}>Eliminar</Button>
                   </td>
                 </tr>
               ))}
@@ -158,7 +160,7 @@ handleChange = (e) => {
         {/*Inicio configuracion Ventana modal con el atributo is open llamo al metodo actualizar*/}
         <Modal isOpen={this.state.modalActualizar}>
           <ModalHeader>
-          <div><h3>Editar Registro</h3></div>
+            <div><h3>Editar Registro</h3></div>
           </ModalHeader>
           <ModalBody>
             <FormGroup>
@@ -167,53 +169,53 @@ handleChange = (e) => {
             </FormGroup>
             <FormGroup>
               <label> Descripcion:</label>
-              <select class="form-control"name="descripcion" type="text" onChange={this.handleChange} value={this.state.form.descripcion}><option></option><option>Parapente</option><option>Alpinismo</option><option>MotoCross</option><option>Rafting</option><option>Parkour</option></select>
+              <select class="form-control" name="descripcion" type="text" onChange={this.handleChange} value={this.state.form.descripcion}><option></option><option>Parapente</option><option>Alpinismo</option><option>MotoCross</option><option>Rafting</option><option>Parkour</option></select>
             </FormGroup>
             <FormGroup>
               <label>Valor Unitario:</label>
-              <input className="form-control" name="valorunitario" type="number" onChange={this.handleChange} value={this.state.form.valorunitario}/>
+              <input className="form-control" name="valorunitario" type="number" onChange={this.handleChange} value={this.state.form.valorunitario} />
             </FormGroup>
             <FormGroup>
               <label>Estado:</label>
-              <select class="form-control"name="estado" type="text" onChange={this.handleChange} value={this.state.form.estado}><option>Disponible</option><option>No Disponible</option></select>
+              <select class="form-control" name="estado" type="text" onChange={this.handleChange} value={this.state.form.estado}><option>Disponible</option><option>No Disponible</option></select>
             </FormGroup>
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={() => this.editar(this.state.form)}>Editar </Button>
-            <Button color="danger"  onClick={() => this.cerrarModalActualizar()}> Cancelar </Button>
+            <Button color="primary" onClick={() => this.editar(this.state.form)}>Guardar </Button>
+            <Button color="danger" onClick={() => this.cerrarModalActualizar()}> Cancelar </Button>
           </ModalFooter>
-          </Modal>
+        </Modal>
 
 
-            {/*Inicio modal insertar */}
+        {/*Inicio modal insertar */}
         <Modal isOpen={this.state.modalInsertar}>
           <ModalHeader>
-          <div><h3>Insertar nuevo producto</h3></div>
+            <div><h3>Insertar nuevo producto</h3></div>
           </ModalHeader>
 
           <ModalBody>
             <FormGroup>
               <label> Id:</label>
               <input className="form-control"
-               // El id va ser de solo lectura para que el usuario no lo edite
+                // El id va ser de solo lectura para que el usuario no lo edite
                 readOnly
                 type="text"
                 // Por eso el valor del ID va a ser la longitud de nuestro arreglo mas 1 , para que sea nuestro nuemero consecutivo
-                value={this.state.data.length+1}
+                value={this.state.data.length + 1}
               />
             </FormGroup>
             <FormGroup>
               <label> Descripcion: </label>
-              <select class="form-control"name="descripcion" type="text" onChange={this.handleChange}><option></option><option>Parapente</option><option>Alpinismo</option><option>MotoCross</option><option>Rafting</option><option>Parkour</option></select>
+              <select class="form-control" name="descripcion" type="text" onChange={this.handleChange}><option></option><option>Parapente</option><option>Alpinismo</option><option>MotoCross</option><option>Rafting</option><option>Parkour</option></select>
             </FormGroup>
             <FormGroup>
               <label> Valor unitario: </label>
-              <input className="form-control" name="valorunitario" type="number" onChange={this.handleChange}/>
+              <input className="form-control" name="valorunitario" type="number" onChange={this.handleChange} />
             </FormGroup>
             <FormGroup>
               <label> Estado:</label>
-              <select class="form-control"name="estado" type="text" onChange={this.handleChange}><option></option><option>Disponible</option><option>No Disponible</option></select>
+              <select class="form-control" name="estado" type="text" onChange={this.handleChange}><option></option><option>Disponible</option><option>No Disponible</option></select>
             </FormGroup>
           </ModalBody>
 

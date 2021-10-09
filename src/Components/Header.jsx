@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 function Header() {
     return (
-        <div className="App">
+        <div className="App ">
         <Navbar bg="dark" variant="dark"
             sticky="top" expand="sm" collapseOnSelect>
             <Navbar.Brand><Link to="/Home">

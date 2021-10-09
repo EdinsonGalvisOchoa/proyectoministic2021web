@@ -11,12 +11,12 @@ import {
 } from "reactstrap";
 // lista de objetos iniciales
 const data = [
-  { idVentas: 1, valortotalventa: 1000, idproducto: 1, cantidadproductos: 1, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1015548375,nombrecliente: "Warren Buffett",nombrevendedor: "Jair Hernández", estado: "En Proceso" },
-  { idVentas: 2, valortotalventa: 2000, idproducto: 3, cantidadproductos: 5, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1335483751, nombrecliente: "Peter Lynch",nombrevendedor: "Chris Gardner", estado: "Entregada" },
-  { idVentas: 3, valortotalventa: 3000, idproducto: 2, cantidadproductos: 6, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1287487952, nombrecliente: "George Soros",nombrevendedor: "Mary Kay Ash", estado: "Cancelada" },
-  { idVentas: 4, valortotalventa: 8000, idproducto: 5, cantidadproductos: 10, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1054812793, nombrecliente: "Carl Icahn",nombrevendedor: "Dave Liniger", estado: "En Proceso" },
-  { idVentas: 5, valortotalventa: 5000, idproducto: 4, cantidadproductos: 1, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1024980652, nombrecliente: "Benjamin Graham",nombrevendedor: "Joe Girard", estado: "Entregada"},
-  { idVentas: 6, valortotalventa: 7000, idproducto: 6, cantidadproductos: 2, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1045869741, nombrecliente: "Ray Dalio",nombrevendedor: "Chris Gardner", estado: "En Proceso" },
+  { idVentas: 1, valortotalventa: 1000, idproducto: 1, cantidadproductos: 1, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1015548375, nombrecliente: "Warren Buffett", nombrevendedor: "Jair Hernández", estado: "En Proceso" },
+  { idVentas: 2, valortotalventa: 2000, idproducto: 3, cantidadproductos: 5, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1335483751, nombrecliente: "Peter Lynch", nombrevendedor: "Chris Gardner", estado: "Entregada" },
+  { idVentas: 3, valortotalventa: 3000, idproducto: 2, cantidadproductos: 6, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1287487952, nombrecliente: "George Soros", nombrevendedor: "Mary Kay Ash", estado: "Cancelada" },
+  { idVentas: 4, valortotalventa: 8000, idproducto: 5, cantidadproductos: 10, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1054812793, nombrecliente: "Carl Icahn", nombrevendedor: "Dave Liniger", estado: "En Proceso" },
+  { idVentas: 5, valortotalventa: 5000, idproducto: 4, cantidadproductos: 1, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1024980652, nombrecliente: "Benjamin Graham", nombrevendedor: "Joe Girard", estado: "Entregada" },
+  { idVentas: 6, valortotalventa: 7000, idproducto: 6, cantidadproductos: 2, preciounidad: 100, fechaventa: "2000-01-01", documentoidentificacion: 1045869741, nombrecliente: "Ray Dalio", nombrevendedor: "Chris Gardner", estado: "En Proceso" },
 ];
 
 class Ventas extends React.Component {
@@ -28,7 +28,7 @@ class Ventas extends React.Component {
     modalActualizar: false,
     modalInsertar: false,
 
-//creamos el estado del formulario
+    //creamos el estado del formulario
     form: {
       idVentas: "",
       valortotalventa: "",
@@ -37,8 +37,8 @@ class Ventas extends React.Component {
       preciounidad: "",
       fechaventa: "",
       documentoidentificacion: "",
-      nombrecliente:"",
-      nombrevendedor:"",
+      nombrecliente: "",
+      nombrevendedor: "",
       estado: "",
     },
   };
@@ -74,9 +74,9 @@ class Ventas extends React.Component {
         arreglo[contador].cantidadproductos = dato.cantidadproductos;
         arreglo[contador].preciounidad = dato.preciounidad;
         arreglo[contador].fechaventa = dato.fechaventa;
-        arreglo[contador].documentoidentificacion= dato.documentoidentificacion;
-        arreglo[contador].nombrecliente= dato.nombrecliente;
-        arreglo[contador].nombrevendedor= dato.nombrevendedor;
+        arreglo[contador].documentoidentificacion = dato.documentoidentificacion;
+        arreglo[contador].nombrecliente = dato.nombrecliente;
+        arreglo[contador].nombrevendedor = dato.nombrevendedor;
         arreglo[contador].estado = dato.estado;
 
       }
@@ -129,7 +129,11 @@ class Ventas extends React.Component {
       <>
         <Container>
           <br />
-          <Button color="success" onClick={() => this.mostrarModalInsertar()}>Crear</Button>
+          <nav class="navbar navbar-light bg-light justify-content-between">
+          <Button color="success" onClick={()=>this.mostrarModalInsertar()}>Crear</Button>
+          <form class="form-inline">
+          <input  type="search" placeholder="Search" aria-label="Search"/>
+           <button  type="submit">Search</button></form></nav>
           <br />
           <br />
           {/*T mayuscula en Table para trabajar con la etiqueta de reactstrap */}
@@ -215,7 +219,7 @@ class Ventas extends React.Component {
             </FormGroup>
             <FormGroup>
               <label>Nombre del cliente:</label>
-              <input class="form-control" name="nombrecliente" type="text" onChange={this.handleChange} value={this.state.form.nombrecliente}/>
+              <input class="form-control" name="nombrecliente" type="text" onChange={this.handleChange} value={this.state.form.nombrecliente} />
             </FormGroup>
             <FormGroup>
               <label>Nombre del vendedor:</label>
@@ -228,7 +232,7 @@ class Ventas extends React.Component {
           </ModalBody>
 
           <ModalFooter>
-            <Button color="primary" onClick={() => this.editar(this.state.form)}>Editar </Button>
+            <Button color="primary" onClick={() => this.editar(this.state.form)}>Guardar </Button>
             <Button color="danger" onClick={() => this.cerrarModalActualizar()}> Cancelar </Button>
           </ModalFooter>
         </Modal>
@@ -277,7 +281,7 @@ class Ventas extends React.Component {
             </FormGroup>
             <FormGroup>
               <label> Nombre del cliente:</label>
-              <input class="form-control" name="nombrecliente" type="text" onChange={this.handleChange}/>
+              <input class="form-control" name="nombrecliente" type="text" onChange={this.handleChange} />
             </FormGroup>
             <FormGroup>
               <label> Nombre del vendedor:</label>
