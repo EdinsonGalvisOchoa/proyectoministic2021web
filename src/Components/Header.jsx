@@ -12,7 +12,6 @@ function Header() {
             <img src={logo} width="40px" height="40px" />{' '}
             SuricataTeam</Link>
             </Navbar.Brand>
-
             <Navbar.Toggle className="coloring" />
             <Navbar.Collapse>
             <Nav>
@@ -25,6 +24,8 @@ function Header() {
                 </NavDropdown>
                 <Nav.Link href="/SobreNosotros">Sobre Nosotros</Nav.Link>
                 <Nav.Link href="/Contactenos">Contactenos</Nav.Link>
+                
+
 
             </Nav>
             </Navbar.Collapse>
